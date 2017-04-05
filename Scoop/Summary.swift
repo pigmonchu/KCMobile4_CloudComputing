@@ -12,6 +12,15 @@ class Summary {
             allNews.append(new)
         }
     }
+
+    //MARK: - Accessors
     
+    var newsCount : Int {
+        get {
+            return allNews.count
+        }
+    }
+    
+
 
 }

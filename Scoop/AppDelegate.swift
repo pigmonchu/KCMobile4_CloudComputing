@@ -4,10 +4,22 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let IS_IPHONE = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        //Recupero noticias
+        
+        let allNews = Array<New>()
+        var news = Summary(news: allNews)
+        
+        //Lanzo el controlador de lista de noticias
+        let summaryVC = NewsViewController(model: news)
+        let rootVC = UINavigationController(rootViewController: summaryVC)
+        
+        window?.rootViewController = rootVC
+        window?.makeKeyAndVisible()
         return true
     }
 
