@@ -77,13 +77,13 @@ class New:NSObject {
             return
         }
         
-        let dict = snap?.value as! [String: Any]
+        let dict = snap?.value as! CloudManager.Document
         self.init(dict: dict)
         self.idInCloud = snap?.ref
         
     }
     
-    convenience init(dict jsonObject: [String: Any]) {
+    convenience init(dict jsonObject: CloudManager.Document) {
         self.init()
 
         if jsonObject["title"] != nil {
@@ -128,4 +128,44 @@ class New:NSObject {
     convenience override init() {
         self.init(title: "", body: "", author: "", lat: nil, lng: nil, isDraft: nil, rating: nil, numOfReadings: nil, attachment: nil)
     }
+    
+    // MARK: - Getters
+    func toDictionary() -> CloudManager.Document {
+        let mirrored_object = Mirror(reflecting: self)
+        var dict: CloudManager.Document = [ : ]
+
+        for (_, attr) in mirrored_object.children.enumerated() {
+            if let property_name = attr.label as String! {
+                
+                if property_name != "idInCloud" {
+                    if attr.value is NSURL {
+                        dict["\(property_name)"] = (attr.value as! NSURL).absoluteString
+                    } else {
+                        dict["\(property_name)"] = attr.value
+                    }
+                }
+                
+            }
+        }
+        return dict
+    }
 }
+
+class NewIndex {
+    var cards: [String: New]
+    
+    init() {
+        cards = [:]
+    }
+    
+    func append(key: String, value: New) {
+        cards[key] = value
+    }
+
+    var count: Int {
+        get {
+            return cards.count
+        }
+    }
+}
+

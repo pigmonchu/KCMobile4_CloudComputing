@@ -82,6 +82,35 @@
 			name = Managers;
 			sourceTree = "<group>";
 		};
+		4636FA4D1E96C21500ECA59D /* ListNews */ = {
+			isa = PBXGroup;
+			children = (
+				469A083A1E92F73600FE3F5D /* NewsViewController.swift */,
+				469A083B1E92F73600FE3F5D /* NewsViewController.xib */,
+				4690A7471E936026009C41F7 /* NewsCollectionViewCell.swift */,
+				4690A7481E936026009C41F7 /* NewsCollectionViewCell.xib */,
+			);
+			name = ListNews;
+			sourceTree = "<group>";
+		};
+		4636FA4E1E96C22B00ECA59D /* DetailNew */ = {
+			isa = PBXGroup;
+			children = (
+				469A083E1E92F75B00FE3F5D /* DetailViewController.swift */,
+				469A083F1E92F75B00FE3F5D /* DetailViewController.xib */,
+			);
+			name = DetailNew;
+			sourceTree = "<group>";
+		};
+		4636FA4F1E96C23A00ECA59D /* CreateNew */ = {
+			isa = PBXGroup;
+			children = (
+				469A08421E92F77C00FE3F5D /* CreateNewViewController.swift */,
+				469A08431E92F77C00FE3F5D /* CreateNewViewController.xib */,
+			);
+			name = CreateNew;
+			sourceTree = "<group>";
+		};
 		469A08181E92D14E00FE3F5D = {
 			isa = PBXGroup;
 			children = (
@@ -106,7 +135,7 @@
 				4600DFAA1E95648E007C0BCA /* Managers */,
 				469A08361E92F04400FE3F5D /* App */,
 				469A08391E92F07D00FE3F5D /* Resources */,
-				469A08381E92F07100FE3F5D /* Controllers */,
+				469A08381E92F07100FE3F5D /* View */,
 				469A08371E92F06700FE3F5D /* Models */,
 				469A08261E92D14E00FE3F5D /* ViewController.swift */,
 				469A08281E92D14E00FE3F5D /* Main.storyboard */,
@@ -129,26 +158,21 @@
 		469A08371E92F06700FE3F5D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				469A08461E92F90100FE3F5D /* Author.swift */,
 				469A08481E92F92F00FE3F5D /* New.swift */,
+				469A08461E92F90100FE3F5D /* Author.swift */,
 				469A084A1E92F93A00FE3F5D /* Error.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
 		};
-		469A08381E92F07100FE3F5D /* Controllers */ = {
+		469A08381E92F07100FE3F5D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				469A083A1E92F73600FE3F5D /* NewsViewController.swift */,
-				469A083B1E92F73600FE3F5D /* NewsViewController.xib */,
-				469A083E1E92F75B00FE3F5D /* DetailViewController.swift */,
-				469A083F1E92F75B00FE3F5D /* DetailViewController.xib */,
-				469A08421E92F77C00FE3F5D /* CreateNewViewController.swift */,
-				469A08431E92F77C00FE3F5D /* CreateNewViewController.xib */,
-				4690A7471E936026009C41F7 /* NewsCollectionViewCell.swift */,
-				4690A7481E936026009C41F7 /* NewsCollectionViewCell.xib */,
+				4636FA4F1E96C23A00ECA59D /* CreateNew */,
+				4636FA4E1E96C22B00ECA59D /* DetailNew */,
+				4636FA4D1E96C21500ECA59D /* ListNews */,
 			);
-			name = Controllers;
+			name = View;
 			sourceTree = "<group>";
 		};
 		469A08391E92F07D00FE3F5D /* Resources */ = {
@@ -181,6 +205,7 @@
 				469A081F1E92D14E00FE3F5D /* Resources */,
 				B44FF499C489E01F780058EB /* [CP] Embed Pods Frameworks */,
 				0402086A30E6239F194C911E /* [CP] Copy Pods Resources */,
+				46211AAA1E97542900C335D6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -274,6 +299,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		46211AAA1E97542900C335D6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
 		};
 		B44FF499C489E01F780058EB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

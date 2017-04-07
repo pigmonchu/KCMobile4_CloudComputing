@@ -1,10 +1,13 @@
 import Foundation
 import Firebase
+import FirebaseDatabase
 
 class CloudManager {
     
+    typealias Document = [String : Any]
+    
     let databaseRef : FIRDatabaseReference
-    let PostRef: FIRDatabaseReference
+    let PostRef: FIRDatabaseReference 
 //    let AuthorRef: FIRDatabaseReference
     
     //MARK: - Initialization
@@ -16,18 +19,33 @@ class CloudManager {
     }
     
     //MARK: - Manejadores
-    func readNews(closure: @escaping ([String : New]) -> Void ) {
-        var dictNews: [String: New] = [:]
+    func readAllNews(callBack: @escaping (NewIndex) -> Void ) {
+        var dictNews = NewIndex()
         
         PostRef.observe(FIRDataEventType.value, with: { (snap) in
+
+            if snap.value is NSNull {
+                callBack(dictNews)
+                return
+            }
+            
             let json = snap.value as! [String: Any]
             for postRef in json {
-                let new = New(dict: postRef.value as! [String: Any])
-                dictNews[postRef.key] = new
+                let new = New(dict: postRef.value as! Document)
+                dictNews.append(key: postRef.key, value: new)
             }
-            closure(dictNews)
+            callBack(dictNews)
             
         })
     }
     
+    func createNewInCloud(_ document: New) {
+        createInCloud(inEntity: PostRef, document: document.toDictionary())
+    }
+    
+    fileprivate func createInCloud(inEntity: FIRDatabaseReference, document: Document) {
+        let key = inEntity.childByAutoId().key
+        let recordWithKey = ["\(key)" : document]
+        inEntity.updateChildValues(recordWithKey)
+    }
 }

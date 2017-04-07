@@ -11,4 +11,7 @@ target 'Scoop' do
 
   # Pod para FB RealTime DataBase
   pod 'Firebase/Database'
+
+  # Pod para gestion de errores
+  pod 'Firebase/Crash'
 end
