@@ -1,8 +1,12 @@
 import UIKit
+import Firebase
 
 class NewsViewController: UIViewController {
+    
+//Inyectar cloud manager en lugar del el modelo y este se obtiene de cloud manager
 
-    let model: Summary
+    var model: [String: New] = [ : ]
+    let backendManager: CloudManager
     
     @IBOutlet weak var newsCollection: UICollectionView!
     @IBOutlet weak var btnCreate: UIButton!
@@ -14,14 +18,22 @@ class NewsViewController: UIViewController {
         let create_button = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(createNew(_:)))
         
         self.navigationItem.rightBarButtonItem = create_button
-        
-        if model.newsCount == 0 {
-            btnCreate.layer.cornerRadius = 5
-            btnCreate.layer.borderWidth = 1
-            btnCreate.layer.borderColor = UIColor.white.cgColor
-            
-            newsCollection.isHidden = true
+
+        //Recupero noticias
+        backendManager.readNews { (dict) in
+            self.model = dict
+
+            if self.model.count == 0 {
+                self.btnCreate.layer.cornerRadius = 5
+                self.btnCreate.layer.borderWidth = 1
+                self.btnCreate.layer.borderColor = UIColor.white.cgColor
+                
+                self.newsCollection.isHidden = true
+            }
+
         }
+        
+        
         
 
         // Do any additional setup after loading the view.
@@ -32,10 +44,25 @@ class NewsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Initializers
-    init(model: Summary) {
-        self.model = model
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         
+        
+        
+        //        let newsRef = FIRDatabase.database().reference().child("news")
+//        
+//        newsRef.observe(.value, with: { (snap) in
+//            let listNews = snap.value
+//        })
+       
+    }
+    
+    // MARK: - Initializers
+    init(dataManager: CloudManager) {
+
+        self.backendManager = dataManager
+
         super.init(nibName: nil, bundle: nil)
         
     }

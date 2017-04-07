@@ -1,8 +1,9 @@
 import Foundation
 import UIKit
+import Firebase
+import FirebaseDatabase
 
-
-class New {
+class New:NSObject {
 
     enum typeFile {
         case image
@@ -12,26 +13,28 @@ class New {
     //MARK: - Intern constants
     
     //MARK: - Stored properties
-    let title: String
-    let body: String
-    let photo: UIImage?
-    let author: User
+    var idInCloud: FIRDatabaseReference?
+    
+    var title: String
+    var body: String
+    var attachment: URL?
+    var author: String
     var isDraft: Bool
     var rating: Double
     var numOfReadings: Int
-    let lat: Double
-    let lng: Double
+    var lat: Double?
+    var lng: Double?
 
     //MARK: - Initialization
     init(title          : String,
          body           : String,
-         author         : User,
-         lat            : Double,
-         lng            : Double,
-         isDraft        : Bool,
-         rating         : Double,
-         numOfReadings  : Int,
-         photo          : UIImage
+         author         : String,
+         lat            : Double?,
+         lng            : Double?,
+         isDraft        : Bool?,
+         rating         : Double?,
+         numOfReadings  : Int?,
+         attachment     : URL?
          ) {
         
         self.title = title
@@ -39,11 +42,90 @@ class New {
         self.author = author
         self.lat = lat
         self.lng = lng
-        self.isDraft = isDraft
-        self.rating = rating
-        self.numOfReadings = numOfReadings
-        self.photo = photo
+        if isDraft == nil {
+            self.isDraft = false
+        } else {
+            self.isDraft = isDraft!
+        }
+        
+        if isDraft == nil {
+            self.isDraft = false
+        } else {
+            self.isDraft = isDraft!
+        }
+        
+        if rating == nil {
+            self.rating = 0
+        } else {
+            self.rating = rating!
+        }
+        
+        if numOfReadings == nil {
+            self.numOfReadings = 0
+        } else {
+            self.numOfReadings = numOfReadings!
+        }
+        
+        self.attachment = attachment
+        self.idInCloud = nil
+    }
+
+    convenience init(snap: FIRDataSnapshot?) {
+
+        if snap == nil {
+            self.init()
+            return
+        }
+        
+        let dict = snap?.value as! [String: Any]
+        self.init(dict: dict)
+        self.idInCloud = snap?.ref
+        
     }
     
+    convenience init(dict jsonObject: [String: Any]) {
+        self.init()
 
+        if jsonObject["title"] != nil {
+            self.title = jsonObject["title"] as! String
+        }
+        
+        if jsonObject["body"] != nil {
+            self.body = jsonObject["body"] as! String
+        }
+        
+        if jsonObject["author"] != nil {
+            self.author = jsonObject["author"] as! String
+        }
+        
+        if jsonObject["lat"] != nil {
+            self.lat = jsonObject["lat"] as! Double
+        }
+        
+        if jsonObject["lng"] != nil {
+            self.lng = jsonObject["lng"] as! Double
+        }
+        
+        if jsonObject["is_draft"] != nil {
+            self.isDraft = jsonObject["is_draft"] as! Bool
+        }
+        
+        if jsonObject["rating"] != nil {
+            self.rating = jsonObject["rating"] as! Double
+        }
+        
+        if jsonObject["num_of_readings"] != nil {
+            self.numOfReadings = jsonObject["num_of_readings"] as! Int
+        }
+        
+        if jsonObject["attachment"] != nil {
+            let attachmentString = jsonObject["attachment"] as! String
+            self.attachment = URL(string: attachmentString)
+        }
+
+    }
+    
+    convenience override init() {
+        self.init(title: "", body: "", author: "", lat: nil, lng: nil, isDraft: nil, rating: nil, numOfReadings: nil, attachment: nil)
+    }
 }

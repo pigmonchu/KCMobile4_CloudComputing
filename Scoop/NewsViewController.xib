@@ -21,6 +21,16 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pública la primera noticia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFG-Ng-9iF">
+                    <rect key="frame" x="65" y="323" width="244" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="244" id="9gn-ca-5mS"/>
+                        <constraint firstAttribute="height" constant="21" id="PAL-NE-6yv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GvH-ad-YTa">
                     <rect key="frame" x="8" y="629" width="359" height="30"/>
                     <constraints>
@@ -31,16 +41,6 @@
                         <action selector="createNew:" destination="-1" eventType="touchUpInside" id="ufm-g7-lTg"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pública la primera noticia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFG-Ng-9iF">
-                    <rect key="frame" x="91" y="323" width="192" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="21" id="PAL-NE-6yv"/>
-                        <constraint firstAttribute="width" constant="192" id="UhS-FI-7mz"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="afz-Hr-AdI">
                     <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                     <color key="backgroundColor" red="0.96462148427963257" green="0.96475988626480103" blue="0.96459120512008667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -65,7 +65,7 @@
                 <constraint firstAttribute="trailing" secondItem="afz-Hr-AdI" secondAttribute="trailing" id="ut8-jE-0PM"/>
                 <constraint firstAttribute="bottom" secondItem="afz-Hr-AdI" secondAttribute="bottom" id="yOZ-c0-Mek"/>
             </constraints>
-            <point key="canvasLocation" x="-402" y="-236"/>
+            <point key="canvasLocation" x="-402.5" y="-236.5"/>
         </view>
     </objects>
 </document>
