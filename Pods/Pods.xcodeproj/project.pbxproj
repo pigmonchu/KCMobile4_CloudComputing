@@ -432,12 +432,6 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		F0F116DE54A3573FC3A328A5E6A5821D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E9EE1BE34F346A132E73987DFA30272A /* FirebaseInstanceID.framework */,
-			);
-			name = Frameworks;
 		F57D027D167CEF0943B885AD63CABC95 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
